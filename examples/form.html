@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="../assets/keelkit/css/keelkit.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/default.css" rel="stylesheet" type="text/css">
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/SWFUpload/swfupload.js"></script>
+<script src="../assets/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+</head>
+<body>
+    <div id="header" class="fn-clear">
+        <div id="logo-box" class="fn-left"><img src="../assets/images/icon-logo.png" border="0" /></div>
+        <div id="top-nav" class="fn-left">
+        	<ul class="fn-ul-iblock">
+            	<li class="on">基本视图</li>
+                <li>文档视图</li>
+                <li>表格视图</li>
+                <li>网格视图</li>
+            </ul>
+        </div>
+        <div id="user-statue" class="fn-right">
+        	<ul class="fn-ul-iblock">
+            	<li class="on">姓名[部门]</li><li>|</li><li>退出</li>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+    	<div class="aside">
+        	<ul id="res-menu">
+            	<li>菜单1</li>
+                <li class="on">菜单2</li>
+                <li>菜单3</li>
+            </ul>
+        </div>
+		<div class="container-box">
+        	<div class="view">
+            	<div class="view-header">
+                    <div class="common-bar fn-clear">
+                        <div class="fn-left">文档视图 > 根目录</div>
+                        <div class="fn-right" style="width:240px">
+                            <div class="input-group input-group-sm" style="margin-top:-3px;">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-bar fn-clear">
+                        <div class="fn-left">
+                            
+                        </div>
+                        <div class="fn-right fn-iblock">
+                            <div class="btn-group" style="margin-top:13px; padding-right:10px;">
+                              <button type="button" class="btn btn-success"><i class="icon-edit"></i> 确认提交</button>
+                              <button type="button" class="btn btn-default"><i class="icon-trash"></i> 取消返回</button>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                <div class="view-content">
+                	<div class="hd"></div>
+                    <div class="bd">
+                    	<form class="kk-form">
+                        	<fieldset>
+                            <p id="upload-btn"></p>
+                                <legend>详细信息</legend>
+                                <p class="control-line">
+                                    <label>标题</label>
+                                    <input type="text" />
+                                    <span class="legend"></span>
+                                    <span class="remind"></span>
+                                </p>
+                              <p class="control-line">
+                                <label>标题</label>
+                                  <textarea cols="60" rows="6"></textarea>
+                                  <span class="legend"></span>
+                                  <span class="remind"></span>
+                                </p>
+                             </fieldset>
+                             <fieldset>
+                                <legend>备注信息</legend>
+                                <p class="control-line">
+                                    <label>标题</label>
+                                    <input type="text" />
+                                    <span class="legend"></span>
+                                    <span class="remind"></span>
+                                </p>
+                                <p class="control-line">
+                                    <label>标题</label>
+                                    <input type="text" />
+                                    <span class="legend"></span>
+                                    <span class="remind"></span>
+                                </p>
+                             </fieldset>
+                        </form>
+                    </div>
+                    <div class="ft"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+<script>
+	var swfuOption = {
+		upload_url : "./tests/engine/ok.php.php",
+		flash_url : "/Rainbow/lib/SWFUpload/Flash/swfupload.swf",
+		button_placeholder_id:'upload-btn',
+		file_size_limit : "20480",
+		button_width: 200,
+		button_height: 20, 
+		button_text: '点我选择文件'
+	}
+	console.log(swfuOption.flash_url);
+	var swfu = new SWFUpload(swfuOption);
+</script>
+</html>

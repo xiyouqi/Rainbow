@@ -1,0 +1,11 @@
+{
+  "family": "keelkit",
+  "name": "rainbow",
+  "version": "1.0.0",
+    "spm" : {
+        "output" : [
+            "a.js"
+        ],
+        "include": "all"
+    }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html style="background-color:#F0FEF6; height:100%">
+<head>
+<meta charset="utf-8">
+<title>{{appName}} - {{appTitle}}</title>
+<link href="./assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/Rainbow/lib/jquery/iCheck/skins/flat/green.css" rel="stylesheet" type="text/css">
+<link href="./assets/keelkit/css/keelkit.css" rel="stylesheet" type="text/css">
+<link href="./assets/css/default.css" rel="stylesheet" type="text/css">
+<script src="./lib/jquery/jquery.min.js"></script>
+<script src="./lib/jquery/jquery.ba-hashchange.min.js"></script>
+<script src="/Rainbow/lib/jquery/iCheck/jquery.icheck.min.js"></script>
+<script src="./lib/common/underscore-min.js"></script>
+<script src="./lib/common/backbone-min.js"></script>
+<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/Rainbow/lib/SWFUpload/swfupload.js"></script>
+<script src="./lib/seajs/sea.js" id="seajsnode"></script>
+<script>
+	var GBROS = {
+		app:{
+			name:'{{appName}}',
+			id:'{{appId}}',
+			title:'{{appTitle}}',
+			logo:'/Rainbow/assets/images/logo.png',
+			theme:'app.html',
+			view:false
+		},
+		debug:true,
+		path:'',
+		viewPath:'/Rainbow/0/view/',
+		actionPath:'./tests/engine/ok.php?',
+		loginUrl:'./tests/engine/login.php',
+		sessionUrl:'./tests/engine/session.php',
+		logoutUrl:'./tests/engine/logout.php'
+	};
+	
+	seajs.config({
+		alias: {
+			
+		},
+		debug: true,
+		plugins: ['nocache']
+	});
+	
+	$(function(){
+		seajs.use("./application/initialization");
+	});
+</script>
+</head>
+<body style="background-color:#F0FEF6; height:100%">
+	<div id="loading-box" style="position:absolute; left:50%; width:200px; text-align:center; margin-left:-100px; top:38%">初始化载入中…
+    </div>
+    <div id="gbros-app-box"></div>
+    <script type="text/template" id="tpl-login-box">
+        <form class="form-group" action="" style="margin-left:auto; margin-right:auto; margin-top:150px; " method="post">
+        	<img src="./assets/images/logo.png" border="0" />
+            <div class="tr">
+                <label class="t lui-iblock" style="width:80px;" for="text1">帐号</label> <input name="userId" type="text" class="t lui-iblock" id="text1" style="width:200px;" size="20"> <span class="help-span"><em>*</em></span>
+            </div>
+            <div class="tr">
+                <label class="t lui-iblock" style="width:80px;" for="text2">密码</label> <input name="password" type="password" class="t lui-iblock" id="text2" style="width:200px;" size="20"> <span class="help-span"><em>*</em></span>
+            </div>
+            <div class="tr" style="position:relative;">
+                 <button type="submit" class="btn btn-success lui-iblock" style="position:absolute;left:0;"><i class="lui-iblock icon-ok"></i> 登录</button>
+            </div>
+        </form>
+    </script>
+</body>
+</html>

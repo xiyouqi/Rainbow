@@ -1,0 +1,333 @@
+<div id="header" class="fn-clear">
+    <div id="logo-box" class="fn-left" style="padding-left:10px;"><img src="{{app.logo}}" border="0" /></div>
+    <div id="top-nav" class="fn-left">
+        <ul id="J-nav-root" class="fn-ul-iblock"> </ul>
+    </div>
+    <div id="user-statue" class="fn-right">
+        <ul class="fn-ul-iblock">
+            <li class="on">{{user.userName}} , {{user.orgName}}
+            </li><li>|
+            </li><li id="J-roles">
+            	<div class="dropdown">
+							  <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
+							    {{user.roleName}}
+							    <b class="caret"></b>
+							  </a>
+							  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"> </ul>
+							</div>
+            </li><li>|
+            </li><li><a href="javascript:void(0);">应用中心</a>
+            </li><li>|
+            </li><li id="J-logout"><a href="javascript:void(0);">退出</a></li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div id="J-nav-menu" class="aside">
+        <ul id="res-menu"> </ul>
+    </div>
+    <div id="container">
+    	<div id="J-view" class="container-box">
+    		
+    	</div>
+    </div>
+</div>
+<div id="footer"> </div>
+<script type="text/template" id="tpl-nav-root-li">
+	<%=resName%>
+</script>
+<script type="text/template" id="tpl-nav-menu-li">
+	<i class="<%=iconUrl%>"></i> <%=resName%>
+</script>
+<script type="text/template" id="tpl-view-action-group"><div class="btn-group fn-iblock"></div></script>
+
+<script type="text/template" id="tpl-view-action-li">
+	<i class="<%=iconUrl%>"></i> <%=name%>
+</script>
+<script type="text/template" id="tpl-view-list-layout">
+	<div class="view-header">
+		<div class="common-bar fn-clear">
+			<div class="fn-left J-view-breadcrumb view-breadcrumb"></div>
+			<div class="fn-left J-view-node-breadcrumb view-breadcrumb"></div>
+			<div class="fn-left view-breadcrumb">
+				<ul class="fn-ul-iblock">
+					<li class="fix">|</li>
+					<li><a href="javascript:window.history.back();">返回</a></li>
+				</ul>
+			</div>
+			<div class="fn-right view-search-box"></div>
+			<div class="loading-sharp">数据载入中……</div>
+		</div>
+		<div class="tool-bar fn-clear">
+			<div class="fn-left tool-bar-box J-view-action"></div>
+			<div class="fn-left tool-bar-box J-view-filter"></div>
+			<div class="fn-right tool-bar-box J-view-aid-action"></div>
+		 </div>
+	</div>
+	<div class="J-view-content view-content" style="border-bottom:#DDD solid 1px;">
+		<div class="J-view-content-header view-content-header"></div>
+		<div class="J-view-content-body view-content-body"></div>
+	</div>
+	<div class="J-view-footer view-footer fn-clear">
+		<div class="fn-left">
+			<span class="J-row-count" style="display: none;">共<strong></strong>条，</span>
+			<span class="J-current-count">当前页面<strong></strong>条，</span>
+			<span  class="J-row-selected-count">选中<strong></strong>条.</span>
+		</div>
+		<div class="fn-right">
+			<div class="pagination J-view-pagination" style="margin:8px;"></div>
+		</div>
+	</div>
+	<div class="J-view-side view-side hide"></div>
+</script>
+<script type="text/template" id="tpl-view-simple-layout">
+	<div class="J-view-content view-content" style="border-bottom:#DDD solid 1px;">
+		<div class="J-view-content-header view-content-header"></div>
+		<div class="J-view-content-body view-content-body"></div>
+	</div>
+	<div class="J-view-footer view-footer fn-clear">
+		<div class="fn-left">
+			<span class="J-row-count" style="display: none;">共<strong></strong>条，</span>
+			<span class="J-current-count">当前页面<strong></strong>条，</span>
+			<span  class="J-row-selected-count">选中<strong></strong>条.</span>
+		</div>
+		<div class="fn-right">
+			<div class="pagination J-view-pagination" style="margin:8px;"></div>
+		</div>
+	</div>
+	<div class="J-view-side view-side hide"></div>
+</script>
+<script type="text/template" id="tpl-view-sheet-layout">
+	<div class="view-header">
+		<div class="tool-bar fn-clear">
+			<div class="fn-right tool-bar-box J-view-action"></div>
+		</div>
+	</div>
+	<div class="J-view-content view-content" style="border-bottom:#DDD solid 1px;">
+		<div class="J-view-content-header view-content-header"></div>
+		<div class="J-view-content-body view-content-body" style="padding-bottom: 15px;"></div>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-custom-view">
+	<div class="view-header">
+		<div class="tool-bar fn-clear">
+			<div class="fn-left tool-bar-box">
+				<div class="btn-group fn-iblock J-tool-bar"></div>
+			</div>
+			<div class="fn-left tool-bar-box J-title-bar" style="margin-left: 15px;"></div>
+			<div class="fn-right tool-bar-box">
+				<div class="btn-group fn-iblock">
+					<button class="btn btn-default J-cancel"><i class="icon-remove"></i> 取消</button>
+					<button class="btn btn-success J-save"><i class="icon-inbox"></i> 保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="J-view-content view-content" style="border-bottom:#DDD solid 1px;">
+		<div class="J-view-content-body view-content-body"></div>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-minute">
+	<div class="view-header">
+		<div class="tool-bar fn-clear">
+			<div class="fn-left tool-bar-box J-breadcrumbs">
+			</div>
+			<div class="fn-left tool-bar-box J-tabs">
+				<ul class="nav nav-pills">
+				  <li class="active">
+				    <a href="#">详细内容</a>
+				  </li>
+				</ul>
+			</div>
+			<div class="fn-right tool-bar-box">
+				<div class="btn-group fn-iblock">
+					<button class="btn btn-default J-exit"><i class="icon-remove"></i> 返回</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="J-view-minute" style="border-bottom:#DDD solid 1px;">
+
+	</div>
+</script>
+
+<script type="text/template" id="tpl-view-selector">
+	<div class="view-header">
+		<div class="tool-bar fn-clear">
+			<div class="fn-left tool-bar-box J-breadcrumbs">
+			</div>
+			<div class="fn-left tool-bar-box J-tabs">
+				<ul class="nav nav-pills">
+					<li class="tab-selector active">
+				    <a href="javascript:void(0);">选择视图</a>
+				  </li>
+				  <li class="tab-list">
+				    <a href="javascript:void(0);">已选定数量 <span></span></a>
+				  </li>
+				</ul>
+			</div>
+			<div class="fn-right tool-bar-box">
+				<div class="btn-group fn-iblock">
+					<button class="btn btn-default J-cancel"><i class="icon-remove"></i> 取消</button>
+					<button class="btn btn-success J-save"><i class="icon-inbox"></i> 保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="J-view-selector" style="border-bottom:#DDD solid 1px;">
+
+	</div>
+</script>
+
+<script type="text/template" id="tpl-view-content-title">
+	<div class="form-group">
+		<div class="tr" style="padding:0px;">
+			<label class="t fn-iblock" style="width:40px;">标题 <em>*</em></label>
+			<span class="control fn-iblock"><input type="text" style="width:450px;margin:0px;" /></span>
+			<span class="remind"></span>
+			<span class="errmsg"></span>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-custom-action">
+	<button class="btn btn-default disabled J-draw" data-type="rect"><i class="icon-stop"></i> 矩形</button>
+	<button class="btn btn-default disabled J-draw" data-type="circle"><i class="icon-adjust"></i> 圆形</button>
+	<button class="btn btn-default disabled J-draw" data-type="polygon"><i class="icon-asterisk"></i> 多边形</button>
+</script>
+<script type="text/template" id="tpl-view-custom-canvas">
+	<div class="read-image">
+		<label style="display: none;">拖拽图片到下面的虚线框内</label>
+		<div class="dropzone" draggable="true">点击选择图片</div>
+	</div>
+	<div class="canvas-container"></div>
+</script>
+<script type="text/template" id="tpl-view-form">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" aria-hidden="true">&times</a>
+		<h3><%=(desc?desc:name)%></h3>
+	</div>
+	<div class="modal-body"></div>
+	<div class="modal-footer">
+		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 取消</a>
+		<button class="btn btn-success J-submit"><i class="icon-ok"></i> 提交</button>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-form-modal">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" aria-hidden="true">&times</a>
+		<h3><%=(desc?desc:name)%></h3>
+	</div>
+	<div class="modal-body"></div>
+	<div class="modal-footer">
+		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 取消</a>
+		<button class="btn btn-success J-submit"><i class="icon-ok"></i> 提交</button>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-upload-form">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+		<h3><%=(desc?desc:name)%></h3>
+	</div>
+	<div class="modal-header">
+		<button class="btn btn-default J-select" ><i class="icon-remove"></i> 选择文件</button>
+	</div>
+	<div class="modal-body">
+		<table style="width:100%;vertical-align: top;">
+			<tbody></tbody>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 取消</a>
+		<button class="btn btn-success J-submit"><i class="icon-ok"></i> 上传</button>
+	</div>
+</script>
+<script type="text/template" id="tpl-file-list">
+	<tr id="file-<%=id%>">
+		<td class="t" style="width:150px;vertical-align: top; line-height:20px;height: 25px;"><%=name%></td>
+		<td width="280">
+			<div class="progress progress-success" style="width:280px;">
+				<div class="bar" style="width: 0"></div>
+			</div>
+		</td>
+		<td class="size fn-hide"> (<%=size%>) </td>
+		<td class="state" style="width:80px; vertical-align: top; line-height:20px;padding-left: 10px;"></td>
+	</tr>
+</script>
+<script type="text/template" id="tpl-form-item">
+	<label class="t fn-iblock"><%=(alias?alias:name)%> <em>*</em></label>
+	<span class="control fn-iblock"></span>
+	<span class="remind"></span>
+	<span class="errmsg"></span>
+</script>
+<script type="text/template" id="tpl-filter-item">
+	<label class="t fn-iblock"><%=(alias?alias:name)%></label>
+	<span class="control fn-iblock"></span>
+</script>
+<script type="text/template" id="tpl-disk-preview">
+	<div class="view-header">
+		<div class="tool-bar fn-clear">
+			<div class="fn-left tool-bar-box J-breadcrumbs">
+			</div>
+			<div class="fn-left tool-bar-box J-title"></div>
+			<div class="fn-right tool-bar-box">
+				<div class="btn-group fn-iblock">
+					<button class="btn btn-default J-exit"><i class="icon-remove"></i> 退出</button>
+					<button class="btn btn-default J-fullscreen"><i class="icon-fullscreen"></i> 全屏</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="J-view-content view-content" style="border-bottom:#DDD solid 1px;"></div>
+</script>
+<script type="text/template" id="tpl-disk-preview-slide">
+	<div class="J-view-content-header view-content-header">
+		<div class="preview-catalog-menu">
+			<div class="img"></div>
+			<ul></ul>
+		</div>
+		<div class="preview-content-menu">
+			<ul class="nav nav-tabs"></ul>
+		</div>
+	</div>
+	<div class="J-view-content-body view-content-body" style="padding: 0;"></div>
+</script>
+<script type="text/template" id="tpl-disk-preview-content">
+	<tbody>
+		<tr>
+			<td align="center" valign="middle" class="preview-content"></td>
+		</tr>
+	</tbody>
+</script>
+<script type="text/template" id="tpl-view-share">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" aria-hidden="true"> &times; </a>
+		<h3><%=(desc?desc:name)%></h3>
+	</div>
+	<div class="modal-header">
+		<div class="input-append">
+			<input class="span5" id="appendedInputButton" type="text" placeholder="按姓名模糊搜索">
+			<button class="btn btn-default" type="button"><i class="icon-search"></i> 搜索 </button>
+		</div>
+	</div>
+	<div class="modal-body"></div>
+	<div class="modal-footer">
+		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 取消</a>
+		<button class="btn btn-success J-submit"><i class="icon-ok"></i> 共享</button>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-share-list">
+	<td><%=USER_NAME%> <small><%=USER_ACCOUNT%></small></td>
+	<td>
+		<select style="width: auto;">
+			<option value="1">禁止</option>
+			<option value="2" selected="selected">只读</option>
+			<option value="3">下载</option>
+			<option value="4">编辑</option>
+			<option value="6">管理</option>
+		</select>
+	</td>
+	<td>
+		<label class="checkbox"><input type="checkbox"> 清除子节点权限</label>
+	</td>
+	<td><a href="javascript:void(0);">删除</a></td>
+</script>
