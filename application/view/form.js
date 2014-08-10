@@ -128,12 +128,12 @@ define(function(require){
 					that.$('.control').append($input);
 					return false;
 				}else if(data[that.model.get('name')]){
-					var $control = $('<input type="hidden" name="'+that.model.get('name')+'">');
-					$control.val(data[that.model.get('name')]);
+					that.control = $('<input type="hidden" name="'+that.model.get('name')+'">');
+					that.control.val(data[that.model.get('name')]);
 					var a = '<span>已上传[<a href="'+GBROS.path
 					+'/sysfile?_node='+data[that.model.get('name')]
 					+'" target="_blank">打开</a>]</span>';
-					that.$('.control').empty().append(a).append($control);
+					that.$('.control').empty().append(a).append(that.control);
 				}else{
 					alert('服务器异常：'+data);
 				}
