@@ -1342,7 +1342,8 @@ define(function(require){
 	//下载
 	action.exportFile = function(e,action){
 		//var model = action.view.collection.findWhere({_selected:true});
-		window.location = action.getUrl();
+		var filters = action.view.model.filterModel.toJSON();
+		window.location = action.getUrl() + "?" + $.param(filters);
 		return;
 	};
 	
