@@ -238,6 +238,14 @@ define(function(require){
 		},
 		//启动编辑器
 		editor:function(e){
+			var body;
+			var coll = new Backbone.Collection(this.view.collection.where({_selected:true}));
+			if(!coll.length){
+				body = [];
+			}else{
+				body = coll.toJSON();
+			}
+			
 			var view = COMS.view;
 			var model = new Backbone.Model({
 				action:[
@@ -279,7 +287,7 @@ define(function(require){
 				notSelected:true,
 				param:this.view.model.get('param'),
 				data:{
-					body:this.view.model.get('data').body,
+					body:body,
 					page:{}	
 				}
 			});
