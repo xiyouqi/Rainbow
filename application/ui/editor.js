@@ -953,7 +953,7 @@ define(function(require){
 			this.isInputContent = true;
 			this.$selectBox.empty();
 			this.$selectBox.removeClass('select dropdown open');
-			if(this.currentCell.head.get('form') === 'select'){
+			if(this.currentCell.head.get('form') === 'select' || this.currentCell.head.get('form') === 'chosen'){
 				this.$selectBox.addClass('select dropdown');
 				this.isInputContent = false;
 				this.showSelectList();
