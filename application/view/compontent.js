@@ -1510,7 +1510,7 @@ define(function(require){
 			}).render();
 			this.$el.append(_.template(tpl,{
 				alias:head.get('alias'),
-				value:cell.$('span').text()
+				value:cell.model.get('name')
 			}));
 		}
 	});
