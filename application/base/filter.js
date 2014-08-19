@@ -48,6 +48,10 @@ define(function(require){
 		return filter.time(value, true, true);
 	};
 	
+	filter.file = function(value){
+		return value ? '<a href="' + GBROS.path + 'sysfile?_node=' + value + '" target="_blank">打开</a>' : '';
+	};
+	
 	filter.json = function(value){
 		return value;
 	};

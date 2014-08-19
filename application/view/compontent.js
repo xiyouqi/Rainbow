@@ -689,7 +689,7 @@ define(function(require){
 			renderVal:function(){
 				var html = (this.head.get('isTitle') && !this.isHead )
 				? '<a href="javascript:void(0);" class="J-cell-title"><%=_.escape(name)%></a>'
-				: '<%=_.escape(name)%>';
+				: '<%=name%>';
 
 				if(!this.isHead
 					&& this.head.get('metaType') === 'wordbook'
