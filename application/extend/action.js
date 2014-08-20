@@ -1347,6 +1347,18 @@ define(function(require){
 		return;
 	};
 	
+		//下载
+	action.exportWord = function(e,action){
+		var paper = action.view.collection.findWhere({_selected:true});
+		if (!paper) {
+			alert('请选择导出试卷');
+			return;
+		}
+		var paper_id = paper.get('paper_id');
+		window.location = action.getUrl() + "?" + "paper_id=" + paper_id;
+		return;
+	};
+	
 	return action;
 });
 
