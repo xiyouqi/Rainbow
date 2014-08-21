@@ -462,7 +462,7 @@ define(function(require){
 			return;
 		}
 		
-		var appKey = role.get('APP_KEY');
+		var appKey = action.view.model.get("pid");
 		var roleKey = role.get('ROLE_KEY');
 		var resList;
 		$.ajax(
