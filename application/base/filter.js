@@ -13,26 +13,26 @@ define(function(require){
 			var d = date.getDate();
 			d = d < 10 ? '0' + d : d;
 			if(date.getFullYear() != today.getFullYear() || raw){
-				str += y + '年';
-				str += m + '月';
-				str += d + '日';
+				str += y + '-';
+				str += m + '-';
+				str += d + '';
 				if(!isDate){
 					str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
 					str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
 				}
 			}else{
 				if(date.getMonth() != today.getMonth()){
-					str += m + '月';
-					str += d + '日';
-					if(!isDate){
-						str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
-						str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
-					}
-				}else if(date.getDate() != today.getDate()){
-					str += d + '日';
-					str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
-					str += ':' +(date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
-				}else{
+					str += m + '-';
+					str += d + '';
+					//if(!isDate){
+						//str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
+						//str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
+					//}
+				//}else if(date.getDate() != today.getDate()){
+					//str += d + '日';
+					//str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
+					//str += ':' +(date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
+				//}else{
 					str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
 					str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());;
 				}
