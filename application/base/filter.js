@@ -7,12 +7,12 @@ define(function(require){
 		if(time){
 			var date = new Date(time);
 			var today = new Date();
-			var y = date.getFullYear();
+			var y = date.getFullYear().toString().slice(2);
 			var m = date.getMonth() + 1;
 			m = m < 10 ? '0' + m : m;
 			var d = date.getDate();
 			d = d < 10 ? '0' + d : d;
-			if(date.getFullYear() != today.getFullYear() || raw){
+			//if(date.getFullYear() != today.getFullYear() || raw){
 				str += y + '-';
 				str += m + '-';
 				str += d + '';
@@ -20,10 +20,10 @@ define(function(require){
 					str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
 					str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
 				}
-			}else{
-				if(date.getMonth() != today.getMonth()){
-					str += m + '-';
-					str += d + '';
+			//}else{
+				//if(date.getMonth() != today.getMonth()){
+					//str += m + '-';
+					//str += d + '';
 					//if(!isDate){
 						//str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
 						//str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
@@ -33,10 +33,10 @@ define(function(require){
 					//str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
 					//str += ':' +(date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());
 				//}else{
-					str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
-					str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());;
-				}
-			}
+					//str += ' ' + (date.getHours()<10?'0'+date.getHours():date.getHours());
+					//str += ':' + (date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes());;
+				//}
+			//}
 			
 		}else{
 			str = value;	
