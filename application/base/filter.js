@@ -7,7 +7,10 @@ define(function(require){
 		if(time){
 			var date = new Date(time);
 			var today = new Date();
-			var y = date.getFullYear().toString().slice(2);
+			var y = date.getFullYear();
+			if(!raw){
+				y = y.toString().slice(2);
+			}
 			var m = date.getMonth() + 1;
 			m = m < 10 ? '0' + m : m;
 			var d = date.getDate();
