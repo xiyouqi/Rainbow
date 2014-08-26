@@ -89,7 +89,7 @@ define(function(require){
 					}
 					
 					$.post(
-						GBROS.changePassword,
+						GBROS.path + GBROS.changePassword,
 						{password:password, newPassword:newPassword, rePassword:rePassword},null,'json'
 					).error(function(){
 						alert('服务器请求失败请刷新页面重试');
