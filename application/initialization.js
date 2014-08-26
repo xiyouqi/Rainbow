@@ -113,7 +113,7 @@ define(function(require){
 				$f.find('h3').text('修改密码');
 				$f.find('.J-submit').on('click',submit);
 				$f.attr({
-					tabindex:"-1",
+					//tabindex:"-1",
 					role:"dialog",
 					"aria-labelledby":"myModalLabel",
 					"aria-hidden":"true"	
