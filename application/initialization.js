@@ -71,6 +71,62 @@ define(function(require){
 					}
 				}
 			}
+			
+			$('#J-changePassword a').on('click',function(){
+				
+				var submit = function(){
+					var password = $f.find('input[name=password]').val();
+					var newPassword = $f.find('input[name=newPassword]').val();
+					var rePassword = $f.find('input[name=rePassword]').val();
+					if(!password || !newPassword){
+						alert('登录密码和新密码必须填写。');
+						return;
+					}
+					
+					if(newPassword !== rePassword){
+						alert('确认密码与新密码不一致。');
+						return;
+					}
+					
+					$.post(
+						GBROS.changePassword,
+						{password:password, newPassword:newPassword, rePassword:rePassword},null,'json'
+					).error(function(){
+						alert('服务器请求失败请刷新页面重试');
+					}).success(function(data, textStatus, jqXHR){
+						if(data.error){
+							alert(data.error);
+						}else if(data.unlogin){
+							GBROS.logout();
+							$f.modal('hide');
+						}else if(data.ok){
+							alert(data.ok);
+							$f.modal('hide');
+						} else {
+							alert('系统异常');
+						}
+					});
+				};
+				
+				var $f = $('<div class="form-group modal hide fade in"></div>').html($('#tpl-view-form').html());
+				$f.find('.modal-body').append($('#tpl-change-pwd').html());
+				$f.find('h3').text('修改密码');
+				$f.find('.J-submit').on('click',submit);
+				$f.attr({
+					tabindex:"-1",
+					role:"dialog",
+					"aria-labelledby":"myModalLabel",
+					"aria-hidden":"true"	
+				});
+				
+				$f.modal({
+				  keyboard: false
+				});
+				
+				$f.on('hidden', function () {
+					$f.remove();
+				});
+			});
 			navModel.render();
 		};
 		
