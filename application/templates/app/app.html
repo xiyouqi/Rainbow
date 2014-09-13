@@ -234,6 +234,24 @@
 		<button class="btn btn-success J-submit"><i class="icon-ok"></i> 提交</button>
 	</div>
 </script>
+<script type="text/template" id="tpl-view-check-form">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+		<h3>工作流审批</h3>
+	</div>
+	<div class="modal-body">
+		<div class="tr">
+			<label class="t fn-iblock"><%=(alias?alias:name)%> <em>*</em></label>
+			<span class="control fn-iblock"></span>
+			<span class="remind"></span>
+			<span class="errmsg"></span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 取消</a>
+		<button class="btn btn-success J-submit"><i class="icon-ok"></i> 确认</button>
+	</div>
+</script>
 <script type="text/template" id="tpl-view-upload-form">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal" aria-hidden="true">&times;</a>

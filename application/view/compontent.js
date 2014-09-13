@@ -354,6 +354,18 @@ define(function(require){
 				}
 			});
 		},
+		//工作流审批
+		check:function(e){
+			var coll = new Backbone.Collection(this.view.collection.where({_selected:true}));
+			if(coll.length < 1){
+				alert('请至少选择一条工作流数据');
+				return;
+			}
+			var object = cool.at(0);
+			var data = {};
+			var form = object.get('data_object');
+			var flow = object.get('flow_object');
+		},
 		//提交服务器
 		commit:function(action,data,success,e){
 			$e = $(e);
