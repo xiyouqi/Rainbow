@@ -372,7 +372,7 @@ define(function(require){
 			var head = this.view.headCollection;
 			
 			collection.add({
-				alias: "审核类型",
+				alias: "审批类型",
 				creat: true,
 				desc: "",
 				filter: "",
@@ -400,7 +400,7 @@ define(function(require){
 			});
 			
 			collection.add({
-				alias: "审核意见",
+				alias: "审批意见",
 				form: "textarea",
 				metaType: "enum",
 				min: 0,
