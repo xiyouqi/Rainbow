@@ -361,10 +361,123 @@ define(function(require){
 				alert('请至少选择一条工作流数据');
 				return;
 			}
-			var object = cool.at(0);
+			var object = coll.at(0);
 			var data = {};
-			var form = object.get('data_object');
 			var flow = object.get('flow_object');
+			flow = flow ? JSON.parse(flow) : null;
+			var field = flow.param.operate_field;
+			var allow_over = flow.param.allow_over;
+			var allow_back_origin = flow.param.allow_back_origin;
+			var collection = new Backbone.Collection;
+			var head = this.view.headCollection;
+			
+			collection.add({
+				alias: "审核类型",
+				creat: true,
+				desc: "",
+				filter: "",
+				form: "select",
+				formParam: "",
+				formRule: "",
+				formTpl: "",
+				group: "",
+				keyType: "",
+				max: 0,
+				metaType: "enum",
+				min: 0,
+				name: "check_type",
+				only: false,
+				remind: "",
+				required: true,
+				tpl: "",
+				typeObject: {
+					list: [
+						{title: "通过",value: "pass"},
+						{title: "退回",value: "unpass"}
+					]
+				},
+				value: ""
+			});
+			
+			collection.add({
+				alias: "审核意见",
+				form: "textarea",
+				metaType: "enum",
+				min: 0,
+				name: "deal_note",
+				only: false,
+				remind: "",
+				required: false
+			});
+			
+			//操作表单字段
+			if(field){
+				_.each(field,function(a){
+					var object = head.findWhere({name:a});
+					a && collection.add(object.toJSON());
+				});
+			}
+			
+			//允许用户关闭工作流
+			if(allow_over){
+				collection.add({
+					alias: "结束工作流",
+					form: "checkbox",
+					min: 0,
+					name: "allow_over",
+					only: false,
+					remind: "",
+					required: false,
+					metaType: "bool"
+				});
+			}
+			
+			//允许用户返回原点（发起人）
+			if(allow_back_origin){
+				collection.add({
+					alias: "退回发起人",
+					form: "checkbox",
+					min: 0,
+					name: "allow_back_origin",
+					only: false,
+					remind: "",
+					required: false,
+					metaType: "bool"
+				});
+			}
+			
+			function submit(data, form) {
+				var object = {};
+				object.id = [];
+				
+				coll.each(function(model){
+					object.id.push({_id:model.get('_id')});
+				});
+				
+				object.flow_object = {
+					check_type:data.check_type,
+					deal_note:data.deal_note
+				};
+
+				data.allow_over && (object.flow_object.allow_over = data.allow_over);
+				data.allow_back_origin && (object.flow_object.allow_back_origin = data.allow_back_origin);
+				
+				object.data_object = {};
+				field && _.each(field,function(a){
+					data[a] && (object.data_object[a] = data[a]);
+				});
+				form.data = {_data:JSON.stringify(object)};
+				form.commit();
+			}
+			
+			var v = new form['Form']({
+				model : new Backbone.Model,
+				collection : collection,
+				action : this,
+				modal : true,
+				callBack : submit
+			});
+			this.modal(v);
 		},
 		//提交服务器
 		commit:function(action,data,success,e){

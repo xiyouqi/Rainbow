@@ -228,36 +228,6 @@ define(function(require){
 			}
 			this.data = {_data:JSON.stringify(object)};
 			this.commit();
-			/*
-			$.ajax(GBROS.actionPath + this.action.model.get('id'),{
-							type:'post',
-							context:this,
-							data:$.param({_data:JSON.stringify(object)}),
-							dataType:'json',
-							success:function(data,textStatus,jqXHR){
-								this.enableSubmit();
-								if(data.error){
-									alert(data.error);
-								}else if(data.unlogin){
-									GBROS.logout();
-								}else if(data.ok){
-									alert(data.ok);
-									this.action.view.model.request();
-									if(this.options.modal) {
-										this.$el.modal('hide');
-									}
-								}else{
-									alert('鏈嶅姟鍣ㄥ紓甯革細'+data);
-								}
-							},
-							error:function(){
-								this.enableSubmit();
-								if(confirm('璁块棶鏈嶅姟鍣ㄥけ璐ワ紝鏄惁閲嶈瘯?')){
-									this.onSubmit();
-								}
-							}
-						});*/
-			
 		},
 		destroy:function(){
 			this.queue.remove(this.action.model.get('id'));
