@@ -1115,3 +1115,6 @@ select, input[type="radio"], input[type="checkbox"] {
 	vertical-align: middle;
 }
 
+[class^="icon-"], [class*=" icon-"]{
+	background-image: url(../images/glyphicons-halflings-1.png);
+}

@@ -7,6 +7,9 @@
         <ul class="fn-ul-iblock">
             <li class="on">{{user.userName}} , {{user.orgName}}
             </li><li>|
+            </li><li id="J-notice" data-count="0">
+            	<i class="icon-bell"></i>
+            </li><li>|
             </li><li id="J-roles">
             	<div class="dropdown">
 							  <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0);">
@@ -189,7 +192,26 @@
 
 	</div>
 </script>
-
+<script type="text/template" id="tpl-view-notice">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal" aria-hidden="true">&times</a>
+		<h3><%=(desc?desc:name)%></h3>
+	</div>
+	<div class="modal-body"></div>
+	<div class="modal-footer">
+		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 关闭</a>
+		<button class="btn btn-default J-read"><i class="icon-inbox"></i> 全部标记已读</button>
+	</div>
+</script>
+<script type="text/template" id="tpl-view-notice-item">
+	<div class="media-body">
+	  <h4 class="media-heading" style="font-size: 14px;">
+	  	<a href="javascript:void(0);"><%=title%></a> 
+	  	<small class="pull-right" style="font-size: 12px;"><%=createdAt%></small>
+	  </h4>
+	  <%=content%>
+	</div>
+</script>
 <script type="text/template" id="tpl-view-content-title">
 	<div class="form-group">
 		<div class="tr" style="padding:0px;">

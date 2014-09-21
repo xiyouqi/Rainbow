@@ -48,6 +48,9 @@ define(function(require){
 			$loadingBox.hide();
 			$('#gbros-app-box').append($app);
 			
+			var notice = require('./common/notice');
+			notice.load();
+			
 			COMS.formUI = require('./ui/form');
 			COMS.viewForm = require('./view/form');
 			COMS.viewCompontent = require('./view/compontent');
