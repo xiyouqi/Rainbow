@@ -35,7 +35,7 @@ define(function(require){
 				    success: function( response ) {
 				        messages = response;
 				        $notice.find('span').remove();
-				        $notice.append('<span class="badge badge-important">' + response.length + '</span>');
+				        response.length > 0 && $notice.append('<span class="badge badge-important">' + response.length + '</span>');
 				    }
 					});
 				};
