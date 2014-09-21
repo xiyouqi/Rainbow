@@ -1,9 +1,9 @@
 define(function(require){
 	return {
-		load:function(){
+		load:function(user){
 			$.getScript('http://' + location.hostname + ':1337/js/dependencies/sails.io.js',function(){
 				var socket = io.connect('http://' + location.hostname + ':1337');
-				var user_id = location.search.slice(1) || '123';
+				var user_id = user.userKey;
 				var $notice = $('#J-notice');
 				var messages = [];
 				
@@ -29,7 +29,7 @@ define(function(require){
 				
 				var loadMessage = function(){
 					$.ajax({
-				    url: 'http://' + location.hostname + ':1337/message/jsonp?user_id=123',
+				    url: 'http://' + location.hostname + ':1337/message/jsonp?user_id=' + user_id,
 				    jsonp: "callback",
 				    dataType: "jsonp",
 				    success: function( response ) {
@@ -45,8 +45,6 @@ define(function(require){
 				$notice.on('click',function(){
 		  		$notice.find('span').remove();
 		  		var $f = $('<div class="form-group modal hide fade in"></div>').html($('#tpl-view-notice').html());
-					
-					$f.find('h3').text('系统通知');
 					$f.attr({
 						//tabindex:"-1",
 						role:"dialog",

@@ -49,7 +49,7 @@ define(function(require){
 			$('#gbros-app-box').append($app);
 			
 			var notice = require('./common/notice');
-			notice.load();
+			notice.load(model.get('user'));
 			
 			COMS.formUI = require('./ui/form');
 			COMS.viewForm = require('./view/form');
