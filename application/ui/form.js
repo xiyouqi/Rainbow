@@ -82,6 +82,7 @@ define(function(require){
 				for(var i = 0 ; i < len; i++){
 					object.id = list[i][keys.id];
 					object.title = list[i][keys.title] ? list[i][keys.title] : list[i][keys.id];
+					object.name = model.get('name');
 					levelStr = level ? levelJoin(level) : levelStr;
 					if(tree){
 						object.title = levelStr + '├' + object.title;
@@ -97,7 +98,7 @@ define(function(require){
 			
 			if(!model.get('required') || model.get('isNull')){ //支持空选项
 				emptyDesc = model.get('formParam').emptyDesc ? model.get('formParam').emptyDesc : '(空)';
-				var object = {id:'',title:emptyDesc};
+				var object = {id:'',title:emptyDesc,name:model.get('name')};
 				$el.append(_.template(optionTpl,object));
 			}
 			
@@ -112,7 +113,8 @@ define(function(require){
 				setOption(model.get('formParam').list,keys);
 			}
 			
-			$el.find('option[value='+value+']').attr("selected", true);
+			$el.find('option[value='+value+']').attr('selected', true);
+			$el.find('input[value='+value+']').attr('checked', true);
 			$el.css('width','auto');
 			
 			if(model.get('form') === 'chosen'){
@@ -145,6 +147,13 @@ define(function(require){
 			return $el;
 		};
 		
+		var radio = function(model){
+			tpl = '<span></span>';
+			optionTpl = '<label class="radio inline">'
+  		+ '<input type="radio" name="<%=name%>" value="<%=id%>"><%=title%></label>';
+  		return select(model);
+		};
+		
 		var tree = function(model){
 			
 		};
@@ -153,6 +162,7 @@ define(function(require){
 			case 'select' : form = select(model);break;
 			case 'chosen' : form = select(model);break;
 			case 'checkbox' : form = checkbox(model);break;
+			case 'radio' : form = radio(model);break;
 			default : form = text(model) ;
 		};
 		
@@ -164,9 +174,15 @@ define(function(require){
 		control:control,
 		getVal:function(el){
 			var $el = $(el);
-			if($el.filter(':radio,:checkbox').size() > 0){
+			
+			if($el.find(':radio,:checkbox').size() > 0){
+				return $el.find(':checked').val();
+			}
+			
+			if($el.filter(':checkbox').size() > 0){
 				return $el.filter(':checked').val();
 			}
+			
 			return $el.val();
 		},
 		wordbookList:wordbookDefine

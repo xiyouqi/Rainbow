@@ -376,7 +376,7 @@ define(function(require){
 				creat: true,
 				desc: "",
 				filter: "",
-				form: "select",
+				form: "radio",
 				formParam: "",
 				formRule: "",
 				formTpl: "",
