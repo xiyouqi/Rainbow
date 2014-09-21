@@ -466,7 +466,7 @@ define(function(require){
 				
 				object.data_object = {};
 				fields && _.each(fields,function(a){
-					object.data_object[a] = data[a] ? data[a] : '';
+					object.data_object[a] = (data[a] !== undefined) ? data[a] : '';
 				});
 				form.data = {_data:JSON.stringify(object)};
 				form.commit();
