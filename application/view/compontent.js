@@ -365,11 +365,12 @@ define(function(require){
 			var data = {};
 			var flow = object.get('flow_object');
 			flow = flow ? JSON.parse(flow) : null;
-			var field = flow.param.operate_field;
+			var fields = flow.param.operate_field;
 			var allow_over = flow.param.allow_over;
 			var allow_back_origin = flow.param.allow_back_origin;
 			var collection = new Backbone.Collection;
 			var head = this.view.headCollection;
+			var formModel = new Backbone.Model;
 			
 			collection.add({
 				alias: "审批类型",
@@ -411,10 +412,11 @@ define(function(require){
 			});
 			
 			//操作表单字段
-			if(field){
-				_.each(field,function(a){
-					var object = head.findWhere({name:a});
-					a && collection.add(object.toJSON());
+			if(fields){
+				_.each(fields,function(a){
+					var field = head.findWhere({name:a});
+					object.get(a) && formModel.set(a,object.get(a));
+					a && collection.add(field.toJSON());
 				});
 			}
 			
@@ -463,15 +465,15 @@ define(function(require){
 				data.allow_back_origin && (object.flow_object.allow_back_origin = data.allow_back_origin);
 				
 				object.data_object = {};
-				field && _.each(field,function(a){
-					data[a] && (object.data_object[a] = data[a]);
+				fields && _.each(fields,function(a){
+					object.data_object[a] = data[a] ? data[a] : '';
 				});
 				form.data = {_data:JSON.stringify(object)};
 				form.commit();
 			}
 			
 			var v = new form['Form']({
-				model : new Backbone.Model,
+				model : formModel,
 				collection : collection,
 				action : this,
 				modal : true,
