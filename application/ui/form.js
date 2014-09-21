@@ -128,7 +128,7 @@ define(function(require){
 			var $el;
 			var type = model.get('form') === 'input' ? 'text' : model.get('form');
 			if(model.get('form') == 'textarea'){
-				$el = $('<textarea rows="4" cols="40" name="'+ model.get('name') +'"></textarea>');
+				$el = $('<textarea rows="5" name="'+ model.get('name') +'" style="width:350px;"></textarea>');
 			}else{
 				$el = $('<input name="'+ model.get('name') + '" type="' + type + '" />');
 			}

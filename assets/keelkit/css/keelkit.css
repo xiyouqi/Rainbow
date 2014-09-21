@@ -31,8 +31,10 @@ audio,canvas,video {
 body,button,input,select,textarea{
 	font:12px/1.5 tahoma,arial,\5b8b\4f53;
 }
+
 input,select,textarea{
 	font-size:100%;
+	padding: 4px 6px;
 }
 
 /* 去掉各Table  cell 的边距并让其边重合 */
