@@ -20,6 +20,7 @@ define(function(require){
 					},
 					onClick:function(e){
 						this.read();
+						this.model.get('url') && window.open('http://' + location.host + '/' + this.model.get('app_id') + '#!' + this.model.get('url'));
 					},
 					read:function(){
 						var that = this;
@@ -29,6 +30,7 @@ define(function(require){
 					    dataType: "jsonp",
 					    success: function(data) {
 								that.remove();
+								loadMessage();
 					    }
 						});
 					}
@@ -74,6 +76,7 @@ define(function(require){
 					    jsonp: "callback",
 					    dataType: "jsonp",
 					    success: function(data) {
+								$f.find('.modal-body').empty();
 								loadMessage();
 					    }
 						});
