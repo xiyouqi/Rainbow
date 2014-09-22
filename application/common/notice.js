@@ -9,19 +9,26 @@ define(function(require){
 				
 				var Item = Backbone.View.extend({
 					className:'media',
+					events:{
+						'click':'onClick'
+					},
 					render:function(){
 						this.$el.html(_.template(
 							$('#tpl-view-notice-item').html(),this.model.toJSON()
 						));
 						return this;
 					},
+					onClick:function(e){
+						this.read();
+					},
 					read:function(){
+						var that = this;
 						$.ajax({
-					    url: 'http://' + location.hostname + ':1337/message/read?id=' + this.model.get('id'),
+					    url: 'http://' + location.hostname + ':1337/message/read/' + this.model.get('id'),
 					    jsonp: "callback",
 					    dataType: "jsonp",
 					    success: function(data) {
-								
+								that.remove();
 					    }
 						});
 					}
@@ -60,6 +67,17 @@ define(function(require){
 						var item = new Item({model:new Backbone.Model(messages[i])});
 						$f.find('.modal-body').append(item.render().el);
 					}
+					
+					$f.find('.J-read').on('click',function(){
+						$.ajax({
+					    url: 'http://' + location.hostname + ':1337/message/read/?user_id=' + user_id,
+					    jsonp: "callback",
+					    dataType: "jsonp",
+					    success: function(data) {
+								loadMessage();
+					    }
+						});
+					});
 					
 					$f.on('hidden', function () {
 						$f.remove();

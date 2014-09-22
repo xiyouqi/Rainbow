@@ -481,6 +481,17 @@ define(function(require){
 			});
 			this.modal(v);
 		},
+		step:function(e){
+			
+		},
+		//数据预览
+		perview:function(e){
+			var selectedModel = this.view.collection.findWhere({_selected:true});
+			if(!selectedModel){
+				alert('请选择要预览的数据');
+				return;
+			}
+		},
 		//提交服务器
 		commit:function(action,data,success,e){
 			$e = $(e);
