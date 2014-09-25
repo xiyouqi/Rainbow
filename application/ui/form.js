@@ -113,8 +113,8 @@ define(function(require){
 				setOption(model.get('formParam').list,keys);
 			}
 			
-			$el.find('option[value='+value+']').attr('selected', true);
-			$el.find('input[value='+value+']').attr('checked', true);
+			$el.find('option[value="'+value+'"]').attr('selected', true);
+			$el.find('input[value="'+value+'"]').attr('checked', true);
 			$el.css('width','auto');
 			
 			if(model.get('form') === 'chosen'){

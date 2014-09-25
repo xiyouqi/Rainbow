@@ -485,12 +485,48 @@ define(function(require){
 			
 		},
 		//数据预览
-		perview:function(e){
+		preview:function(e){
 			var selectedModel = this.view.collection.findWhere({_selected:true});
 			if(!selectedModel){
 				alert('请选择要预览的数据');
 				return;
 			}
+			
+			var template = this.action.param.template;
+			//var template ='demo.html';
+			if(!template){
+				alert('没有设置预览模板');
+				return;
+			}
+			
+			var head = this.view.model.get('attr').head;
+			var data = {};
+			var view = function(model,head){
+				head = new Backbone.Model(head);
+				model = filter[head.get('metaType')] ? filter[head.get('metaType')](model) : model;
+				model = new Backbone.Model({name:model});
+				var cell = new Cell.Base({
+					row:this,
+					model:model,
+					head:head
+				}).render();
+				data[head.get('name')] = cell.model.get('name');
+			};
+			
+			for(var i = 0; i < head.length; i++){
+					view.apply(this,[selectedModel.get(head[i]['name']),head[i]]);
+			}
+			
+			var tpl = $.ajax({
+			  url: GBROS.path + "/Rainbow/application/templates/preview/" + template,
+			  async: false
+			}).responseText;
+			
+			var $el = $('<div class="modal hide fade"></div>').append($('#tpl-view-detail').html());
+			$el.addClass('modal hide fade').modal({
+				keyboard: false
+			});
+			$el.find('.modal-body').append(_.template(tpl,data));
 		},
 		//提交服务器
 		commit:function(action,data,success,e){
@@ -1646,7 +1682,7 @@ define(function(require){
 				row:this,
 				model:model,
 				head:head
-			}).render();
+			});
 			this.$el.append(_.template(tpl,{
 				alias:head.get('alias'),
 				value:cell.model.get('name')

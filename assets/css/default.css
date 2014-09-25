@@ -352,7 +352,7 @@ html,body {
 	color: #666;
 	line-height: 28px;
 	margin:0;
-	width:80px;
+	width:120px;
 }
 .form-filter .tr{
 	margin-right:5px;
@@ -1117,4 +1117,9 @@ select, input[type="radio"], input[type="checkbox"] {
 
 [class^="icon-"], [class*=" icon-"]{
 	background-image: url(../images/glyphicons-halflings-1.png);
+}
+
+.modal {
+	width: 660px;
+	margin-left: -335px;
 }
