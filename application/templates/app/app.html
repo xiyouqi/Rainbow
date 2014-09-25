@@ -7,7 +7,7 @@
         <ul class="fn-ul-iblock">
             <li class="on">{{user.userName}} , {{user.orgName}}
             </li><li>|
-            </li><li id="J-notice" data-count="0">
+            </li><li id="J-notice" data-count="0" style="cursor: pointer;">
             	<i class="icon-bell"></i>
             </li><li>|
             </li><li id="J-roles">
@@ -205,9 +205,9 @@
 </script>
 <script type="text/template" id="tpl-view-notice-item">
 	<div class="media-body">
-	  <h4 class="media-heading" style="font-size: 14px;">
-	  	<a href="javascript:void(0);"><%=title%></a> 
-	  	<small class="pull-right" style="font-size: 12px;"><%=createdAt%></small>
+	  <h4 class="media-heading" style="font-size: 14px; cursor: pointer;">
+	  	<%=title%>
+	  	<small class="pull-right" style="font-size: 12px;"><%=send_time%></small>
 	  </h4>
 	  <%=content%>
 	</div>

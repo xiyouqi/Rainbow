@@ -1,4 +1,5 @@
 define(function(require){
+	var filter = require('../base/filter');
 	return {
 		load:function(user){
 			$.getScript('http://' + location.hostname + ':1337/js/dependencies/sails.io.js',function(){
@@ -13,6 +14,7 @@ define(function(require){
 						'click':'onClick'
 					},
 					render:function(){
+						this.model.set('send_time',filter.time(this.model.get('send_time')));
 						this.$el.html(_.template(
 							$('#tpl-view-notice-item').html(),this.model.toJSON()
 						));
