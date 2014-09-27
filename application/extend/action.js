@@ -655,7 +655,7 @@ define(function(require){
 		if (!paper) {
 			alert('请选择试卷');
 			return;
-		} else if(paper.get('status') !== 'draft'){
+		} else if(paper.get('status') !== 'draft' && paper.get('status') !== 'back'){
 			alert('当前试卷非草稿状态不可组卷');
 			return;
 		}
@@ -1008,7 +1008,7 @@ define(function(require){
 		if (!trainClass) {
 			alert('请选择培训班');
 			return;
-		} else if(trainClass.get('status') !== 'draft'){
+		} else if(trainClass.get('status') !== 'draft' && trainClass.get('status') !== 'back'){
 			alert('当前培训班非创建状态不可选择培训学员');
 			return;
 		}
