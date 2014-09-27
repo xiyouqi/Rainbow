@@ -1682,7 +1682,7 @@ define(function(require){
 				row:this,
 				model:model,
 				head:head
-			});
+			}).render();
 			this.$el.append(_.template(tpl,{
 				alias:head.get('alias'),
 				value:cell.model.get('name')
