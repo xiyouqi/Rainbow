@@ -482,7 +482,72 @@ define(function(require){
 			this.modal(v);
 		},
 		step:function(e){
+			var flow;
+			var selectedModel = this.view.collection.findWhere({_selected:true});
+			if(!selectedModel){
+				alert('请选择要查看的数据');
+				return;
+			}
+
+			$.ajax(
+				this.getUrl() + '?case_id=' + selectedModel.get('case_id') + '&_time=' + new Date().getTime(),
+				{
+					async:false,
+					dataType:'json',
+					error:function(){
+						alert('服务器请求失败请刷新页面重试');
+					},
+					success:function(data, textStatus, jqXHR){
+						if(data.error){
+							alert(data.error);
+						}else if(data.unlogin){
+							GBROS.logout();
+						}else{
+							flow = data.data.flow;
+						}
+					}
+				}
+			);
 			
+			var Step = Backbone.Model.extend({
+				idAttribute:'step_key'
+			});
+			
+			var steps = new Backbone.Collection(flow.step, {model:Step});
+			var logs = flow.log;
+			var next = flow.case.last_step_key;
+			var $el = $('<div class="modal hide fade"></div>').append($('#tpl-view-flow').html());
+			$el.addClass('modal hide fade').modal({
+				keyboard: false
+			});
+			
+			$el.find('.modal-header .btn').on('click', function(e){
+				$e = $(e.currentTarget);
+				$e.siblings().removeClass('btn-success').addClass('btn-default');
+				$e.removeClass('btn-default').addClass('btn-success');
+				$el.find('.modal-body>div').hide();
+				$el.find('.' + $e.data('content')).show();
+			});
+			
+			var logTpl = $('#tpl-view-flow-log').html();
+			var stepTpl = $('#tpl-view-flow-step').html();
+			
+			function renderLog(log, i){
+				log.step_name = steps.get(log.step_key) ? steps.get(log.step_key).get('step_name') : '';
+				log.deal_time = filter.time(log.deal_time);
+				$el.find('.J-flow-log').append(_.template(logTpl, log));
+			}
+			
+			function renderStep(step, i){
+				step.set('index', i + 1);
+				$el.find('.J-flow-step').append(_.template(stepTpl, step.toJSON()));
+			}
+			
+			_.each(logs, renderLog);
+			steps.each(renderStep);
+			console.log($el.find('h4[alt="' + next + '"]'));
+			$el.find('h4[alt="' + next + '"]').parent().prevAll().find('h4').addClass('text-success');
+			$el.find('h4[alt="' + next + '"]').parent().prevAll().find('i').show();
 		},
 		//数据预览
 		preview:function(e){
@@ -492,7 +557,7 @@ define(function(require){
 				return;
 			}
 			
-			var template = this.action.param.template;
+			var template = this.model.get('param').template;
 			//var template ='demo.html';
 			if(!template){
 				alert('没有设置预览模板');
@@ -1665,6 +1730,7 @@ define(function(require){
 		render:function(){
 			var head = this.view.mainView.model.get('attr').head;
 			var row = this.model.toJSON();
+			this.$el.append('<table class="table table-bordered" style="margin:15px 0;"><tbody></tbody></table>');
 			for(var i = 0; i < head.length; i++){
 				if(this.view.mainView.idName !== head[i]['name']){
 					this.renderCell(head[i],row[head[i]['name']]);
@@ -1677,13 +1743,14 @@ define(function(require){
 			head = new Backbone.Model(head);
 			model = filter[head.get('metaType')] ? filter[head.get('metaType')](model) : model;
 			model = new Backbone.Model({name:model});
-			var tpl = '<div class="tr"><label class="t fn-iblock" style="width:180px;"><%=alias%></label><span class="control fn-iblock"><%=value%></span></div>';
+			//var tpl = '<div class="tr"><label class="t fn-iblock" style="width:180px;"><%=alias%></label><span class="control fn-iblock"><%=value%></span></div>';
+			var tpl = '<tr><th width="160" style="background-color: #f9f9f9;"><%=alias%></th><td><%=value%></td></tr>';
 			var cell = new Cell.Base({
 				row:this,
 				model:model,
 				head:head
 			}).render();
-			this.$el.append(_.template(tpl,{
+			this.$('tbody').append(_.template(tpl,{
 				alias:head.get('alias'),
 				value:cell.model.get('name')
 			}));

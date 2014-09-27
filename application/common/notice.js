@@ -78,7 +78,7 @@ define(function(require){
 					    jsonp: "callback",
 					    dataType: "jsonp",
 					    success: function(data) {
-								$f.find('.modal-body').empty();
+								$f.modal('hide');
 								loadMessage();
 					    }
 						});

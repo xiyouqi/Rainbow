@@ -222,26 +222,44 @@
 		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 关闭</a>
 	</div>
 </script>
-<script type="text/template" id="tpl-view-flow-step">
+<script type="text/template" id="tpl-view-flow">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal" aria-hidden="true">&times</a>
 		<h3>工作流详情</h3>
 	</div>
 	<div class="modal-header">
-		<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#flow-info">审批信息</a></li>
-		  <li><a href="#flow-step">审批步骤</a></li>
-		</ul>
+		<div class="btn-group fn-iblock">
+			<button class="btn btn-success" data-content="J-flow-log"><i class="icon-align-justify"></i> 审批记录</button>
+			<button class="btn btn-default" data-content="J-flow-step"><i class="icon-list"></i> 审批步骤</button>
+		</div>
 	</div>
 	<div class="modal-body">
-		<div class="tab-content">
-		  <div class="tab-pane active" id="flow-info"></div>
-		  <div class="tab-pane" id="flow-step"></div>
-		</div>
+	  <div class="J-flow-log"></div>
+	  <div class="J-flow-step" style="display: none;"></div>
 	</div>
 	<div class="modal-footer">
 		<a class="btn btn-default J-concel" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 关闭</a>
 	</div>
+</script>
+<script type="text/template" id="tpl-view-flow-log">
+	<div class="media-body">
+	  <h4 class="media-heading" style="font-size: 16px;">
+	  	<%=step_name%> <small style="font-size: 12px;"> - <%=current_user.user_name%></small>
+	  	<small class="pull-right" style="font-size: 12px;"><%=deal_time%></small>
+	  </h4>
+	  <strong>审批描述：</strong><%=deal_desc%>
+	  <%=deal_note ? '<br><strong>审批意见</strong>：' + deal_note : '' %>
+	</div>
+	<hr style="margin: 10px 0">
+</script>
+<script type="text/template" id="tpl-view-flow-step">
+	<div class="media-body">
+	  <h4 class="media-heading muted" style="font-size: 14px; padding: 0 3px;" alt="<%=step_key%>">
+	  	<%=index%>. <%=step_name%>
+	  	<i class="pull-right icon-ok" style="margin-right: 10px; display: none;"></i>
+	  </h4>
+	</div>
+	<hr style="margin: 10px 0">
 </script>
 <script type="text/template" id="tpl-view-content-title">
 	<div class="form-group">
