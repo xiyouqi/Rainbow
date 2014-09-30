@@ -545,9 +545,12 @@ define(function(require){
 			
 			_.each(logs, renderLog);
 			steps.each(renderStep);
-			console.log($el.find('h4[alt="' + next + '"]'));
-			$el.find('h4[alt="' + next + '"]').parent().prevAll().find('h4').addClass('text-success');
-			$el.find('h4[alt="' + next + '"]').parent().prevAll().find('i').show();
+			$el.find('.J-flow-step').find('h4[alt="' + next + '"]').parent().prevAll().find('h4').addClass('text-success').find('i').show();
+			//$el.find('h4[alt="' + next + '"]').parent().prevAll().find('i').show();
+			
+			if(flow.case.is_over){
+				 $el.find('.J-flow-step').find('h4').addClass('text-success').find('i').show();
+			}
 		},
 		//数据预览
 		preview:function(e){
@@ -1732,9 +1735,8 @@ define(function(require){
 			var row = this.model.toJSON();
 			this.$el.append('<table class="table table-bordered" style="margin:15px 0;"><tbody></tbody></table>');
 			for(var i = 0; i < head.length; i++){
-				if(this.view.mainView.idName !== head[i]['name']){
+				if(this.view.mainView.idName !== head[i]['name'] && head[i]['hide'] !== 'all'){
 					this.renderCell(head[i],row[head[i]['name']]);
-						//this.$el.append('<div class="tr"><label class="t fn-iblock" style="width:180px;">' + head[i]['alias'] + '</label><span class="control fn-iblock">'+ row[head[i]['name']] +'</span></div>');
 				}
 			}
 			return this;
@@ -1743,7 +1745,6 @@ define(function(require){
 			head = new Backbone.Model(head);
 			model = filter[head.get('metaType')] ? filter[head.get('metaType')](model) : model;
 			model = new Backbone.Model({name:model});
-			//var tpl = '<div class="tr"><label class="t fn-iblock" style="width:180px;"><%=alias%></label><span class="control fn-iblock"><%=value%></span></div>';
 			var tpl = '<tr><th width="160" style="background-color: #f9f9f9;"><%=alias%></th><td><%=value%></td></tr>';
 			var cell = new Cell.Base({
 				row:this,
