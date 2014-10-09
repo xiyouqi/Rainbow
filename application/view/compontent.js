@@ -515,7 +515,7 @@ define(function(require){
 			
 			var steps = new Backbone.Collection(flow.step, {model:Step});
 			var logs = flow.log;
-			var next = flow.case.last_step_key;
+			var next = flow['case'].last_step_key;
 			var $el = $('<div class="modal hide fade"></div>').append($('#tpl-view-flow').html());
 			$el.addClass('modal hide fade').modal({
 				keyboard: false
@@ -548,7 +548,7 @@ define(function(require){
 			$el.find('.J-flow-step').find('h4[alt="' + next + '"]').parent().prevAll().find('h4').addClass('text-success').find('i').show();
 			//$el.find('h4[alt="' + next + '"]').parent().prevAll().find('i').show();
 			
-			if(flow.case.is_over){
+			if(flow['case'].is_over){
 				 $el.find('.J-flow-step').find('h4').addClass('text-success').find('i').show();
 			}
 		},

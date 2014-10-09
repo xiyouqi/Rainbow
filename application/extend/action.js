@@ -1254,8 +1254,8 @@ define(function(require){
 	};
 	
 //选择文件进行导入
-	action.import = function(e,action){
-		var fileKey='';
+	action['import'] = function(e,action){
+		var fileKey = '';
 		var $input = $('<div class="tr"><label class="t fn-iblock">选择文件</label><input  type="file" name="_file"></input></div>');
 		var $uploadStatus = $('<div class="tr"></div>');
 		var $status = $('<div class="tr"><span>已上传</span></div>');
