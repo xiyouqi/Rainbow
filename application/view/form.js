@@ -34,7 +34,6 @@ define(function(require){
 			}
 			
 			if(this.model.get('form') === 'chosen'){
-				//this.$(".chosen-select").chosen({width: '300px'});
 				this.$(".chosen-select").css('width',300).select2();
 			}
 			
