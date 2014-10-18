@@ -8,6 +8,7 @@ define(function(require){
 			var v = new view.Minute({
 				main:this.view,
 				model:this.model
+				,nestedLevel:this.view.nestedLevel
 			}).render();
 	};
 	
@@ -403,7 +404,7 @@ define(function(require){
 			collection.add({
 				alias: "审批意见",
 				form: "textarea",
-				metaType: "enum",
+				metaType: "string",
 				min: 0,
 				name: "deal_note",
 				only: false,
@@ -804,6 +805,7 @@ define(function(require){
 					model:this,
 					id:'view-' + this.id,
 					isNested:true,
+					nestedLevel:that.view.nestedLevel + 1,
 					params:[id]
 				}).render();
 				model.view = view;

@@ -7,6 +7,7 @@ define(function(require){
 		initialize:function(){
 			$(window).on('resize',$.proxy(this,'setBodyHeight'));
 			this.isNested = this.options.isNested;
+			this.nestedLevel = this.options.nestedLevel ? this.options.nestedLevel : 1;
 			this._cacheWordbook = {};
 			this._cacheEnum = {};
 		},
@@ -18,8 +19,8 @@ define(function(require){
 		},
 		setBodyHeight:function(){
 			var h = $('#header').outerHeight();
-			if(this.isNested){
-				h += 66;
+			if(this.nestedLevel > 1){
+				h += 66 * (this.nestedLevel-1);
 			}
 			var vh = this.$('.view-header').eq(0).outerHeight();
 			var vch = this.$('.view-content-header').eq(0).outerHeight();
@@ -70,6 +71,17 @@ define(function(require){
 			this.mainView.hide();
 			this.mainView.$el.after(this.el);
 			this.show();
+			return this;
+		}
+	});
+	
+	//iframe视图
+	var Iframe = Base.extend({
+		initialize:function(){
+			Base.prototype.initialize.apply(this, arguments);
+		},
+		render:function(){
+			var tpl = '<iframe name="" frameborder="0" src="" height="100%" width="100%" style="visibility: visible;"></iframe>';
 			return this;
 		}
 	});
