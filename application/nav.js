@@ -25,22 +25,29 @@ define(function(require){
 	};
 	
 	//视图导航
-	var viewNav = function(id,breadcrumb,param){
+	var viewNav = function(id, breadcrumb, param, url){
 		var Model = COMS.viewModel;
 		var model = new Model;
 		model.set('breadcrumb',breadcrumb);
 		model.set('_param',param);
 		model.set('_resId',id);
+		
 		if(param.length && param[0].indexOf('=') != -1){
 			var _param = param[0].split('=');
 			model.filterModel.set(_param[0],_param[1],{silent:true});
 		}
-		model.url = './tests/engine/list-view.php?id=' + id;
-		if(!GBROS.debug){
-			 model.url = GBROS.viewPath + id;
-		}
-		$('#J-view').data('id',id).empty().addClass('loading');
-		model.request();		
+		
+		if(url){
+			model.set('_url',url);
+			var view = new COMS.view.Iframe({model:model}).render();
+		}else{
+			model.url = './tests/engine/list-view.php?id=' + id;
+			if(!GBROS.debug){
+				 model.url = GBROS.viewPath + id;
+			}
+			$('#J-view').data('id',id).empty().addClass('loading');
+			model.request();
+		}	
 	};
 	
 	//菜单视图定义
@@ -102,6 +109,8 @@ define(function(require){
 			}
 			if(this.model.get('resType') === 'view'){
 				viewNav(this.model.get('resKey'),this.breadcrumb,_.clone(param));
+			}else if(this.model.get('resType') === 'link' && this.model.get('resUrl')){
+				viewNav(this.model.get('resKey'),this.breadcrumb,_.clone(param),this.model.get('resUrl'));
 			}
 		},
 		router:function(hash){

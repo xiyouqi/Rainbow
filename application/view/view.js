@@ -77,12 +77,26 @@ define(function(require){
 	
 	//iframe视图
 	var Iframe = Base.extend({
+		template:_.template($('#tpl-view-iframe-layout').html()),
 		initialize:function(){
 			Base.prototype.initialize.apply(this, arguments);
 		},
 		render:function(){
-			var tpl = '<iframe name="" frameborder="0" src="" height="100%" width="100%" style="visibility: visible;"></iframe>';
+			var iframe = '<iframe name="" frameborder="0" src="' + this.model.get('_url') + '"'
+			+ 'height="100%" width="100%" style="visibility: visible;"></iframe>';
+			$('#J-view').html(this.el);
+			this.$el.append(this.template());
+			this.setBodyHeight();
+			this.breadcrumb();
+			this.$('.J-view-content-body').html(iframe).css('padding',0);
 			return this;
+		},
+		breadcrumb:function(){
+			var v = new compontent.Breadcrumb({
+				collection:new Backbone.Collection(this.model.get('breadcrumb')),
+				view:this
+			});
+			this.$('.J-view-breadcrumb').html(v.render().el);
 		}
 	});
 	
@@ -941,6 +955,7 @@ define(function(require){
 	var view = {
 		Simple:Simple,
 		Aid:Aid,
+		Iframe:Iframe,
 		General:General,
 		Table:Table,
 		Grid:Grid,
