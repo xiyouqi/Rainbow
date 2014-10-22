@@ -784,7 +784,9 @@ define(function(require){
 		onClick:function(){
 			this.$el.siblings().removeClass('active');
 			this.$el.addClass('active');
-			if(this.model.get('id')){
+			if(this.model.get('url')){
+				this.createIframe();
+			}else if(this.model.get('id')){
 				this.display();
 			}else{
 				this.view.$('.J-view-minute').html(this.view.content.el);
@@ -794,6 +796,14 @@ define(function(require){
 			if(!this.component){
 				this.createComponent();
 			}
+		},
+		createIframe:function(){
+			var id = this.view.model.get(this.view.mainView.idName);
+			var url = this.model.get('url').replace(/\$id/g,id);
+			var iframe = '<iframe class="view-content-body" name="" frameborder="0" src="' + url + '"'
+			+ 'height="100%" width="100%" style="visibility: visible;padding:0;"></iframe>';
+			this.view.$('.J-view-minute').html(iframe);
+			this.view.setBodyHeight();
 		},
 		createComponent:function(){
 			var model = new COMS.viewModel;
