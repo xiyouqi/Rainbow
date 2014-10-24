@@ -398,7 +398,7 @@ define(function(require){
 						{title: "退回",value: "unpass"}
 					]
 				},
-				value: ""
+				value: "pass"
 			});
 			
 			collection.add({

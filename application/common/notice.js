@@ -38,7 +38,7 @@ define(function(require){
 					}
 				});
 				
-				var loadMessage = function(){
+				var loadMessage = function(first){
 					$.ajax({
 				    url: 'http://' + location.hostname + ':1337/message/jsonp?user_id=' + user_id,
 				    jsonp: "callback",
@@ -46,12 +46,32 @@ define(function(require){
 				    success: function( response ) {
 				        messages = response;
 				        $notice.find('span').remove();
-				        response.length > 0 && $notice.append('<span class="badge badge-important">' + response.length + '</span>');
+				        if(response.length > 0){
+				        	 $notice.append('<span class="badge badge-important">' + response.length + '</span>');
+				        	 first && playSound();
+				        }
 				    }
 					});
 				};
 				
-				loadMessage();
+				var playSound = function(){
+					//播放声音
+			  	soundManager.setup({
+					  url: '/Rainbow/lib/soundmanager/swf/',
+					  onready: function() {
+					    var mySound = soundManager.createSound({
+					      id: 'aSound',
+					      url: '/Rainbow/lib/soundmanager/mp3/notification.mp3'
+					    });
+					    mySound.play();
+					  },
+					  ontimeout: function() {
+					  
+					  }
+					});
+				};
+				
+				loadMessage(true);
 				
 				$notice.on('click',function(){
 		  		$notice.find('span').remove();
@@ -96,23 +116,8 @@ define(function(require){
 				  });
 				  
 				  socket.on('notice',function(e){
-				  	//播放声音
-				  	soundManager.setup({
-						  url: '/Rainbow/lib/soundmanager/swf/',
-						  onready: function() {
-						    var mySound = soundManager.createSound({
-						      id: 'aSound',
-						      url: '/Rainbow/lib/soundmanager/mp3/notification.mp3'
-						    });
-						    mySound.play();
-						  },
-						  ontimeout: function() {
-						  
-						  }
-						});
-						
+				  	playSound();
 						loadMessage();
-						
 				  });
 				});
 				
