@@ -643,6 +643,7 @@ define(function(require){
 				that.selectView = new COMS.view.General({
 					model:this,
 					isNested:true,
+					nestedLevel:that.nestedLevel + 1,
 					selector:that
 				});
 				that.selectedList = new that.selectView.Collection(that.list);

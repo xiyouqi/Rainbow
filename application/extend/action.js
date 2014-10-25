@@ -716,7 +716,9 @@ define(function(require){
 			main:action.view,
 			url:GBROS.viewPath + '014734781c20f9458a5d472e9143089b',
 			callBack:submit,
-			list:subjectList
+			list:subjectList,
+			isNested:true,
+			nestedLevel:action.view.nestedLevel
 		}).render();
 		
 		
