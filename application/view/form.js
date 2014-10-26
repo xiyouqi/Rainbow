@@ -51,7 +51,7 @@ define(function(require){
 							'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
 							'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 					});
-				},200);
+				},500);
 			}
 			
 			return this;	
