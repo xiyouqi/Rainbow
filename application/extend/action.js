@@ -1038,7 +1038,7 @@ define(function(require){
 		var view = COMS.view;
 		var submit = function(selector) {
 			if (selector.selectedList.size() < 1) {
-				alert('请先选择试卷题目');
+				alert('请先选择培训班学员');
 				return;
 			}
 			var array = [];
@@ -1165,6 +1165,81 @@ define(function(require){
 			delete f;
 		});
 	};
+	
+	action.examStudent = function(e, action) {
+		var exam = action.view.collection.findWhere({
+			_selected : true
+		});
+
+		if (!exam) {
+			alert('请选择考试');
+			return;
+		} else if(exam.get('status') !== 'draft' && exam.get('status') !== 'back'){
+			alert('当前考试非创建状态不可选择考试人员');
+			return;
+		}
+
+		var examId = exam.get('exam_id');
+		var studentList;
+		$.ajax(GBROS.viewPath + '01455470ba734028e08145546bb00204/'
+				+ examId + '?_time=' + new Date().getTime(),  {
+			async : false,
+			dataType : 'json',
+			error : function() {
+				alert('服务器请求失败请刷新页面重试');
+			},
+			success : function(data, textStatus, jqXHR) {
+				if (data.error) {
+					alert(data.error);
+				} else if (data.unlogin) {
+					GBROS.logout();
+				} else {
+					studentList = data.data.body;
+				}
+			}
+		});
+		
+		var view = COMS.view;
+		var submit = function(selector) {
+			if (selector.selectedList.size() < 1) {
+				alert('请先选择考试人员');
+				return;
+			}
+			var array = [];
+			_.map(selector.selectedList.pluck('student_id'), function(key) {
+				array.push({
+					student_id : key
+				});
+			});
+			var data = {
+				exam_id : examId,
+				batch : array
+			};
+
+			$.post(action.getUrl(),{_data:JSON.stringify(data)},function(data){
+				if (data.error) {
+					alert(data.error);
+				} else if (data.unlogin) {
+					GBROS.logout();
+				} else {
+					alert(data.ok);
+					selector.exit();
+				}
+			},'json').fail(function(){
+				alert('服务器请求失败请刷新页面重试');
+			});
+		};
+		
+		var v = new view.Selector({
+			main:action.view,
+			url:GBROS.viewPath + '0145546bb6f94028e08145546bb00013',
+			callBack:submit,
+			list:studentList
+		}).render();
+		
+		
+	};
+	
 		//培训班主任，获取组织机构人员，进行考试报名列表
 	action.examStudentChoose = function(e, action) {
 		var exam = action.view.collection.findWhere({
@@ -1207,7 +1282,7 @@ define(function(require){
 
 		var submit = function() {
 			if (t.selectedColl.size() < 1) {
-				alert('请先选择培训班报名学员');
+				alert('请先选择考试人员');
 				this.enableSubmit();
 				return;
 			}
