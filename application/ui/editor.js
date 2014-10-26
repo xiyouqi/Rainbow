@@ -817,8 +817,8 @@ define(function(require){
 				{
 					//autoHeightMode:true
 					height:this.$('.J-view-content-body').height() - 3,
-			  		allowUpload:false
-			  	}
+			  	allowUpload:false
+			  }
 			);
 			setTimeout($.proxy(this.setHeight,this),50);
 			/*

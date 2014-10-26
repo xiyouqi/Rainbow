@@ -37,9 +37,27 @@ define(function(require){
 				this.$(".chosen-select").css('width',300).select2();
 			}
 			
+			if(this.model.get('form') === 'editor'){
+				this.control.hide().css('height',300).css('width',450);
+				var that = this;
+				setTimeout(function(){
+					that.editor = KindEditor.create('textarea[name="' + that.model.get('name') + '"]', {
+						resizeType : 1,
+						minWidth:'450px',
+						allowPreviewEmoticons : false,
+						allowImageUpload : false,
+						items : [
+							'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+							'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+							'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+					});
+				},200);
+			}
+			
 			return this;	
 		},
 		getVal:function(el){
+			this.editor && this.editor.sync();
 			return formUI.getVal(el);
 		},
 		timeFilter:function(){
