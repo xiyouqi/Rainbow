@@ -879,7 +879,6 @@ define(function(require){
 			var data = {
 				course_category_id : catetoryId,
 				fileKey : fileKey,
-				secret : !!$checkbox.find('input:checked').size()
 			};
 
 			f.data = {
