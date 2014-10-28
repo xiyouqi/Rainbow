@@ -878,7 +878,7 @@ define(function(require){
 		var submit = function() {
 			var data = {
 				course_category_id : catetoryId,
-				fileKey : fileKey,
+				fileKey : fileKey
 			};
 
 			f.data = {
