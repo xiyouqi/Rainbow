@@ -461,6 +461,11 @@ define(function(require){
 					check_type:data.check_type,
 					deal_note:data.deal_note
 				};
+				
+				if(object.flow_object.check_type === 'unpass' && !object.flow_object.deal_note){
+					this.enableSubmit();
+					return alert('审批退回必须填写审批意见');
+				}
 
 				data.allow_over && (object.flow_object.allow_over = data.allow_over);
 				data.allow_back_origin && (object.flow_object.allow_back_origin = data.allow_back_origin);
