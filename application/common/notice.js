@@ -22,7 +22,9 @@ define(function(require){
 					},
 					onClick:function(e){
 						this.read();
-						this.model.get('url') && window.open('http://' + location.host + '/' + this.model.get('app_id') + '#!' + this.model.get('url'));
+						if(this.model.get('url')){
+							location = '/' + this.model.get('app_id') + '#!' + this.model.get('url');
+						}
 					},
 					read:function(){
 						var that = this;
@@ -37,22 +39,23 @@ define(function(require){
 						});
 					}
 				});
-				
-				var loadMessage = function(first){
+				var messageNum = 0;
+				var loadMessage = function(){
 					$.ajax({
 				    url: 'http://' + location.hostname + ':1337/message/jsonp?user_id=' + user_id,
 				    jsonp: "callback",
 				    dataType: "jsonp",
 				    success: function( response ) {
-				        messages = response;
 				        $notice.find('span').remove();
 				        if(response.length > 0){
 				        	 $notice.append('<span class="badge badge-important">' + response.length + '</span>');
-				        	 first && playSound();
+				        	 response.length > messageNum && playSound();
 				        }
+				        messageNum = response.length;
 				    }
 					});
 				};
+				
 				var mySound;
 				var playSound = function(){
 					//播放声音
@@ -75,7 +78,7 @@ define(function(require){
 					});
 				};
 				
-				loadMessage(true);
+				//loadMessage(true);
 				
 				$notice.on('click',function(){
 		  		$notice.find('span').remove();
@@ -116,17 +119,18 @@ define(function(require){
 		  	
 				socket.on('connect',function(){
 				  socket.get('/notice',{user_id:user_id},function(users){
-				    
+				    //console.log(users);
+				    loadMessage();
 				  });
 				});
 				
 				socket.on('notice',function(e){
-			  	playSound();
+					//console.log(e);
 					loadMessage();
 			  });
 				  
 				socket.on('disconnect', function(e){
-					
+					//console.log(e);
 				});
 			});
 		}
