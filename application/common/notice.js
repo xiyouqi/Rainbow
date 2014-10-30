@@ -53,13 +53,17 @@ define(function(require){
 				    }
 					});
 				};
-				
+				var mySound;
 				var playSound = function(){
 					//播放声音
+					if(mySound){
+						return mySound.play();
+					}
+					
 			  	soundManager.setup({
 					  url: '/Rainbow/lib/soundmanager/swf/',
 					  onready: function() {
-					    var mySound = soundManager.createSound({
+					    mySound = soundManager.createSound({
 					      id: 'aSound',
 					      url: '/Rainbow/lib/soundmanager/mp3/notification.mp3'
 					    });
@@ -114,13 +118,13 @@ define(function(require){
 				  socket.get('/notice',{user_id:user_id},function(users){
 				    
 				  });
-				  
-				  socket.on('notice',function(e){
-				  	playSound();
-						loadMessage();
-				  });
 				});
 				
+				socket.on('notice',function(e){
+			  	playSound();
+					loadMessage();
+			  });
+				  
 				socket.on('disconnect', function(e){
 					
 				});
