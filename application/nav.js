@@ -162,11 +162,14 @@ define(function(require){
 			if(this.model.get('resType') === 'catalog'){
 				$('#J-nav-menu').show();
 				$('#container').css('margin-left',$('#J-nav-menu').outerWidth());
-				
 			}else if(this.model.get('resType') === 'view'){
 				$('#J-nav-menu').hide();
 				$('#container').css('margin-left',0);
 				viewNav(this.model.get('resKey'),this.breadcrumb,_.clone(param));
+			}else if(this.model.get('resType') === 'link' && this.model.get('resUrl')){
+				$('#J-nav-menu').hide();
+				$('#container').css('margin-left',0);
+				viewNav(this.model.get('resKey'),this.breadcrumb,_.clone(param),this.model.get('resUrl'));
 			}
 		},
 		initialize:function(){
