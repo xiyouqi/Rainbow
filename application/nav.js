@@ -37,15 +37,17 @@ define(function(require){
 			model.filterModel.set(_param[0],_param[1],{silent:true});
 		}
 		
+		$('#J-view').data('id',id).empty().addClass('loading');
 		if(url){
 			model.set('_url',url);
-			var view = new COMS.view.Iframe({model:model}).render();
+			var view = new COMS.view.Iframe({
+				model:model
+			}).render();
 		}else{
 			model.url = './tests/engine/list-view.php?id=' + id;
 			if(!GBROS.debug){
 				 model.url = GBROS.viewPath + id;
 			}
-			$('#J-view').data('id',id).empty().addClass('loading');
 			model.request();
 		}	
 	};
