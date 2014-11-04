@@ -50,8 +50,8 @@ define(function(require){
 				        if(response.length > 0){
 				        	 $notice.append('<span class="badge badge-important">' + response.length + '</span>');
 				        	 response.length > messageNum && playSound();
-				        	 messages = response;
 				        }
+				        messages = response;
 				        messageNum = response.length;
 				    }
 					});
