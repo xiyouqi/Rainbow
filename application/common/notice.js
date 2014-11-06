@@ -13,6 +13,9 @@ define(function(require){
 					events:{
 						'click':'onClick'
 					},
+					initialize:function(){
+						this.$modal = this.options.$modal;
+					},
 					render:function(){
 						this.model.set('send_time',filter.time(this.model.get('send_time')));
 						this.$el.html(_.template(
@@ -24,6 +27,7 @@ define(function(require){
 						this.read();
 						if(this.model.get('url')){
 							location = '/' + this.model.get('app_id') + '#!' + this.model.get('url');
+							this.$modal.modal('hide');
 						}
 					},
 					read:function(){
@@ -96,7 +100,7 @@ define(function(require){
 					});
 					
 					for(var i = 0; i < messages.length; i++){
-						var item = new Item({model:new Backbone.Model(messages[i])});
+						var item = new Item({model:new Backbone.Model(messages[i]),$modal:$f});
 						$f.find('.modal-body').append(item.render().el);
 					}
 					
