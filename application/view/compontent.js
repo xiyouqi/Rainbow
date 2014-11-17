@@ -1255,14 +1255,16 @@ define(function(require){
 			+'<span class="fn-iblock" style="width:34px;height:34px;margin-right:5px;">&nbsp;</span>'
 			+'<span class="fn-iblock" style="font-size:13px;"><%=NODE_NAME%></span></div>'
 			+ '<div class="fn-left col-UPDATE_TIME" style="width:18%;"><span><%=UPDATE_TIME%></span></div>'
-			+'<div class="fn-left col-FILE_SIZE" style="width:18%;"><span><%=FILE_SIZE%></span></div>'
+			+'<div class="fn-left col-USER_NAME" style="width:9%;"><span><%=USER_NAME%></span></div>'
+			+'<div class="fn-left col-FILE_SIZE" style="width:9%;"><span><%=FILE_SIZE%></span></div>'
 			:
 			'<div class="fn-left col-title" style="width:64%;">'
 			+'<span class="fn-iblock" style="width:30px;height:24px;text-align:center; padding-top:10px;line-height:1em;" class="col-NODE_KEY"><input type="checkbox"></span>'
 			+'<span class="fn-iblock file-icon-small" style="width:34px;height:34px;margin-right:5px;">&nbsp;</span>'
 			+'<span class="fn-iblock" style="font-size:13px;"><a href="javascript:void(0);" class="J-cell-title"><%=NODE_NAME%></a></span></div>'
 			+ '<div class="fn-left col-UPDATE_TIME" style="width:18%;"><span><%=UPDATE_TIME%></span></div>'
-			+'<div class="fn-left col-FILE_SIZE" style="width:18%;"><span><%=FILE_SIZE%></span></div>';
+			+'<div class="fn-left col-USER_NAME" style="width:9%;"><span><%=USER_NAME%></span></div>'
+			+'<div class="fn-left col-FILE_SIZE" style="width:9%;"><span><%=FILE_SIZE%></span></div>';
 			var object = this.model.toJSON();
 			object.UPDATE_TIME = filter.time(object.UPDATE_TIME);
 			object.FILE_SIZE = filter.byte(object.FILE_SIZE);
