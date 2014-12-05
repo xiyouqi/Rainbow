@@ -392,7 +392,7 @@ define(function(require){
 			});
 			
 			if(this.model){
-				var url = GBROS.path + '/file?_node='
+				var url = GBROS.path + 'file?_node='
 				+ this.model.get('NODE_KEY') + '&type=custom';
 				$.ajax(
 					url,{
@@ -611,7 +611,7 @@ define(function(require){
 						var node = t.selectedColl.at(0);
 						if(node.get('FILE_TYPE') && node.get('FILE_TYPE').indexOf('image') !== -1){
 							this.loadImage(
-								GBROS.path + '/file?_node='
+								GBROS.path + 'file?_node='
 								+ node.get('NODE_KEY')
 								+ '&type=view'
 							);
@@ -777,7 +777,7 @@ define(function(require){
 			this.mainView = this.action.view;
 			this.editor = null;
 			if(this.model){
-				var url = GBROS.path + '/file?_node='
+				var url = GBROS.path + 'file?_node='
 				+ this.model.get('NODE_KEY') + '&type=custom';
 				$.ajax(
 					url,{
