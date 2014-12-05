@@ -97,7 +97,7 @@ define(function(require){
 			alert('无选定文件下载权限（至少需要对选定节点有下载权限）');
 			return;
 		}
-		window.location = GBROS.path + "/file?_node=" + model.get('NODE_KEY');
+		window.location = GBROS.path + "file?_node=" + model.get('NODE_KEY');
 		return;
 	};
 	

@@ -592,7 +592,7 @@ define(function(require){
 			}
 			
 			var tpl = $.ajax({
-			  url: GBROS.path + "/Rainbow/application/templates/preview/" + template,
+			  url: GBROS.path + "Rainbow/application/templates/preview/" + template,
 			  async: false
 			}).responseText;
 			
@@ -1390,7 +1390,7 @@ define(function(require){
 				return;
 			}
 			window.location =
-				GBROS.path + "/file?_node=" 
+				GBROS.path + "file?_node=" 
 				+ this.model.get(this.view.model.get('attr').idName);
 		},
 		preview:function(){

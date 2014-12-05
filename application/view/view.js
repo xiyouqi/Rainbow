@@ -256,7 +256,7 @@ define(function(require){
 		},
 		onClick:function(){
 			window.location =
-				GBROS.path + "/file?_node=" 
+				GBROS.path + "file?_node=" 
 				+ this.model.get('NODE_KEY');
 		}
 	});
@@ -316,7 +316,7 @@ define(function(require){
 			this.contentViews[node.get('NODE_KEY')]  = v;
 			v.render().$('.preview-content').append('<img />');
 			v.$('.preview-content img').attr('src',
-				GBROS.path + '/file?_node='
+				GBROS.path + 'file?_node='
 				+ node.get('NODE_KEY')
 				+ '&type=view'
 			);
@@ -343,7 +343,7 @@ define(function(require){
 		renderCustom:function(node){
 			node = node ? node : this.model;
 			var model = new NodeModel;
-			model.url = GBROS.path + '/file?_node='
+			model.url = GBROS.path + 'file?_node='
 			+ node.get('NODE_KEY')
 			+ '&type=custom';
 			var that = this;
@@ -415,7 +415,7 @@ define(function(require){
 				if(face){
 					this.$('.preview-catalog-menu .img').show().append('<img width="200" />');
 					this.$('.preview-catalog-menu .img img').attr('src',
-						GBROS.path + '/file?_node='
+						GBROS.path + 'file?_node='
 						+ face.get('NODE_KEY')
 						+ '&type=view'
 					);
@@ -481,7 +481,7 @@ define(function(require){
 			if(this.model.get('_contents') && this.model.get('_contents').get(model.get('NODE_KEY'))){
 				this.model.get('_contents').get(model.get('NODE_KEY')).set('_active',Math.floor(Math.random()*10+1));
 			}else if(model.get('NODE_TYPE') === 'file' && model.get('FILE_TYPE').indexOf('image') === -1){
-				window.location = GBROS.path + "/file?_node=" 
+				window.location = GBROS.path + "file?_node=" 
 				+ model.get('NODE_KEY');
 			}else{
 				this.view.creatSlide(model,this);

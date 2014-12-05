@@ -16,7 +16,7 @@ define(function(require){
 		
 		//同步载入应用模板文件
 		appTpl = appTpl ? appTpl : $.ajax({
-		  url: GBROS.path + "/Rainbow/application/templates/app/" + (app.theme ? app.theme : 'app.html'),
+		  url: GBROS.path + "Rainbow/application/templates/app/" + (app.theme ? app.theme : 'app.html'),
 		  async: false
 		}).responseText;
 		

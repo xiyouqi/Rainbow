@@ -18,7 +18,7 @@ define(function(require){
 			
 			if(this.model.get('form') === 'file' && this.form.model.get(this.model.get('name'))){
 				var a = '<span>已上传[<a href="'+GBROS.path
-				+'/sysfile?_node='+this.form.model.get(this.model.get('name'))+'" target="_blank">打开</a>]</span>';
+				+'sysfile?_node='+this.form.model.get(this.model.get('name'))+'" target="_blank">打开</a>]</span>';
 				this.$('.control').append(a);
 			}
 			
@@ -149,7 +149,7 @@ define(function(require){
 					that.control = $('<input type="hidden" name="'+that.model.get('name')+'">');
 					that.control.val(data[that.model.get('name')]);
 					var a = '<span>已上传[<a href="'+GBROS.path
-					+'/sysfile?_node='+data[that.model.get('name')]
+					+'sysfile?_node='+data[that.model.get('name')]
 					+'" target="_blank">打开</a>]</span>';
 					that.$('.control').empty().append(a).append(that.control);
 				}else{
@@ -305,8 +305,8 @@ define(function(require){
 						? this.action.view.model.get('data').node.id : '';
 							
 			var settings_object = {
-				upload_url : GBROS.path + "/UpLoadServlet",
-				flash_url : GBROS.path + "/Rainbow/lib/SWFUpload/Flash/swfupload.swf",
+				upload_url : GBROS.path + "UpLoadServlet",
+				flash_url : GBROS.path + "Rainbow/lib/SWFUpload/Flash/swfupload.swf",
 				file_post_name : "Filedata",
 				post_params : {
 				   "_node" : nodeId
